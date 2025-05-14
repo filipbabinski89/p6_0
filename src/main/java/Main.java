@@ -56,7 +56,7 @@ class Main {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 System.out.println("Błędny wybór! Proszę wpisać liczbę.");
-                scan.nextLine(); // clear the scanner buffer
+                scan.nextLine(); 
             }
         }
     }
