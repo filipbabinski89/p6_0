@@ -18,6 +18,7 @@ import java.util.Scanner;
 class WrongStudentName extends Exception { }
 class WrongAge extends Exception { }
 class WrongDateOfBirth extends Exception { }
+class WrongMenuOption extends Exception { }
 
 class Main {
     public static Scanner scan = new Scanner(System.in);
@@ -40,17 +41,23 @@ class Main {
                 System.out.println("Błędny wiek!");
             } catch(WrongDateOfBirth e) {
                 System.out.println("Błędny format daty!");
+            } catch(WrongMenuOption e) {
+                System.out.println("Błędny wybór z menu! Wybierz liczbę od 0 do 3.");
             }
         }
     }
 
-    public static int menu() {
+    public static int menu() throws WrongMenuOption {
         System.out.println("Wciśnij:");
         System.out.println("1 - aby dodać studenta");
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        return scan.nextInt();
+        int choice = scan.nextInt();
+        if (choice < 0 || choice > 3) {
+            throw new WrongMenuOption();
+        }
+        return choice;
     }
 
     public static String ReadName() throws WrongStudentName {
