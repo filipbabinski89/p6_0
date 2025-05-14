@@ -45,17 +45,19 @@ class Main {
     }
 
     public static int menu() {
-        System.out.println("Wciśnij:");
-        System.out.println("1 - aby dodać studenta");
-        System.out.println("2 - aby wypisać wszystkich studentów");
-        System.out.println("3 - aby wyszukać studenta po imieniu");
-        System.out.println("0 - aby wyjść z programu");
-        try {
-            String input = scan.next();
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            scan.nextLine(); // clear the scanner buffer
-            return -1; // invalid choice that will trigger default case
+        while(true) {
+            System.out.println("Wciśnij:");
+            System.out.println("1 - aby dodać studenta");
+            System.out.println("2 - aby wypisać wszystkich studentów");
+            System.out.println("3 - aby wyszukać studenta po imieniu");
+            System.out.println("0 - aby wyjść z programu");
+            try {
+                String input = scan.next();
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Błędny wybór! Proszę wpisać liczbę.");
+                scan.nextLine(); // clear the scanner buffer
+            }
         }
     }
 
