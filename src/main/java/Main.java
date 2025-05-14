@@ -41,29 +41,27 @@ class Main {
                 System.out.println("Błędny wiek!");
             } catch(WrongDateOfBirth e) {
                 System.out.println("Błędny format daty!");
+            } catch(WrongMenuChoice e) {
+                System.out.println("Błędny wybór! Wybierz liczbę od 0 do 3.");
             }
         }
     }
 
-    public static int menu() {
-        while(true) {
-            System.out.println("Wciśnij:");
-            System.out.println("1 - aby dodać studenta");
-            System.out.println("2 - aby wypisać wszystkich studentów");
-            System.out.println("3 - aby wyszukać studenta po imieniu");
-            System.out.println("0 - aby wyjść z programu");
-            try {
-                String input = scan.next();
-                int choice = Integer.parseInt(input);
-                if (choice >= 0 && choice <= 3) {
-                    return choice;
-                } else {
-                    System.out.println("Błędny wybór! Wybierz liczbę od 0 do 3.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Błędny wybór! Proszę wpisać liczbę.");
-                scan.nextLine(); 
+    public static int menu() throws WrongMenuChoice {
+        System.out.println("Wciśnij:");
+        System.out.println("1 - aby dodać studenta");
+        System.out.println("2 - aby wypisać wszystkich studentów");
+        System.out.println("3 - aby wyszukać studenta po imieniu");
+        System.out.println("0 - aby wyjść z programu");
+        String input = scan.next();
+        try {
+            int choice = Integer.parseInt(input);
+            if (choice < 0 || choice > 3) {
+                throw new WrongMenuChoice();
             }
+            return choice;
+        } catch (NumberFormatException e) {
+            throw new WrongMenuChoice();
         }
     }
 
