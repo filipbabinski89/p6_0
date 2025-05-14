@@ -53,7 +53,12 @@ class Main {
             System.out.println("0 - aby wyjść z programu");
             try {
                 String input = scan.next();
-                return Integer.parseInt(input);
+                int choice = Integer.parseInt(input);
+                if (choice >= 0 && choice <= 3) {
+                    return choice;
+                } else {
+                    System.out.println("Błędny wybór! Wybierz liczbę od 0 do 3.");
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Błędny wybór! Proszę wpisać liczbę.");
                 scan.nextLine(); 
