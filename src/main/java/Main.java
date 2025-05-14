@@ -50,7 +50,13 @@ class Main {
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        return scan.nextInt();
+        try {
+            String input = scan.next();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            scan.nextLine(); // clear the scanner buffer
+            return -1; // invalid choice that will trigger default case
+        }
     }
 
     public static String ReadName() throws WrongStudentName {
